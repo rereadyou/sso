@@ -10,21 +10,21 @@ class Authentication extends cm\Controller
     {
         if(count($_POST))
         {
-        extract($_POST, EXTR_PREFIX_ALL, 'post');
-        $users = md\User::find_by_email($post_email); 
+            extract($_POST, EXTR_PREFIX_ALL, 'post');
+            $users = md\User::find_by_email($post_email); 
 
-        if(count($users) == 1)
-        {
-            $user = $users[0];
-            if($user->password === $post_password)
+            if(count($users) == 1)
             {
-                echo 'login done';
+                $user = $users[0];
+                if($user->password === $post_password)
+                {
+                    echo 'login done';
+                }
+                else
+                {
+                    echo 'login failed';
+                }
             }
-            else
-            {
-                echo 'login failed';
-            }
-        }
         }
         $this->flush();
     }
