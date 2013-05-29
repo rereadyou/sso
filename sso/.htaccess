@@ -8,7 +8,7 @@ RewriteEngine On
 #when try to access real directory
 #RewriteCond %{REQUEST_FILENAME} -d
 #RewriteRule ^([a-zA-Z0-9/\?\#&_=]*)$ index.php?rt=$1 [L,QSA]
-RewriteRule ^(.*)$ index.php?rt=$1 [L,QSA]
+RewriteRule ^(.*$)$ index.php?rt=$1 [L,QSA]
 #disable directory browser
 Options All -Indexes
 

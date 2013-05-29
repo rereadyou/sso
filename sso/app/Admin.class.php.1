@@ -23,15 +23,18 @@ class Admin extends cm\Controller
     //default page
     public function index()
     {
-        die ('died page');
-        //return $this->login()->addapp();
+        return $this->login()->addapp();
     }
 
     public function login()
     {
         $this->out("Please login firstlly.");    
-        $this->fetch_flush('authentication/login');
-        //return $this->flush();
+        return $this->flush();
+    }
+
+    public function apps()
+    {
+        
     }
 
     public function addapp()
@@ -40,9 +43,12 @@ class Admin extends cm\Controller
 
 
         $this->set('uname', 'rereadyou');
-        //return $this->flush(); 
+        return $this->flush(); 
     }
 
+    public function login_chk()
+    {
+    }
 }
 //end of Controller Admin class declaration
 ?>

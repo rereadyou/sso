@@ -45,6 +45,7 @@ use sso\core\config as sc;
     {
         $vars = func_get_args();
         $type = array_pop($vars);
+
         foreach($vars as $var)
         {
             $rets[] = getGPC($var, $type);    

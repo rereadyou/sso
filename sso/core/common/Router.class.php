@@ -16,11 +16,6 @@ class Router extends Singleton
 	protected $uri_array  = array();
     protected $rules = array();
 	
-	public function __construct()
-	{
-		//$this->uri = $_SERVER['REQUEST_URI'];
-	}
-		
 	/**
      * parseURI
      *
@@ -144,8 +139,6 @@ class Router extends Singleton
             return false;
         $maa = count($maas); 
         
-
-
         if($maa == 1)
         {
             $file = array_shift($maas);
@@ -156,9 +149,10 @@ class Router extends Singleton
         else
         {
             $mod = ucfirst(array_shift($maas));
-            $obj = $this->get_class_instance($mod);
-
+            $mod = "sso\core\common\\".$mod;
+            $obj = new $mod();
             $action = array_shift($maas);
+
             if($obj && in_array($action, get_class_methods($obj)))
             {
                 $obj->$action($maas);
@@ -176,41 +170,6 @@ class Router extends Singleton
         die("Page 404, what you seek is not real.");
     }
 
-    /**
-     * get_class_instance
-     *
-     * get a instance of class according to the class name
-     *
-     * @access  private
-     * @param   string  $class
-     * @return  object  return object or false 
-     */ 
-    private function get_class_instance($class)
-    {
-        if(!is_string($class))
-        {
-            return false;
-        }
-        $obj = false;
-        switch($class)
-        {
-            case 'Api':
-                $obj =  new Api();
-                break;
-            case 'Admin':
-                $obj = new Admin();
-                break;
-            case 'Home':
-                $obj = new Home();
-                break;
-            default:
-                $obj = false;
-                break;
-        }
-        return $obj;
-    }
-
-	
 	public function run($rules)
 	{
         //$this->uri = $_SERVER['PATH_INFO'];

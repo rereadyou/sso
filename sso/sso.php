@@ -13,6 +13,7 @@ defined('MODEL') or define('MODEL', CORE.'model'.SEPARATOR);
 defined('DB') or define('DB', CORE.'db'.SEPARATOR);
 defined('DRIVER') or define('DRIVER', DB.'drivers'.SEPARATOR);
 defined('ADMIN') or define('ADMIN', 'admin'.SEPARATOR);
+defined('APP') or define('APP', 'app'.SEPARATOR);
 defined('HOME') or define('HOME', 'home'.SEPARATOR);
 defined('SMARTY_DIR') or define('SMARTY_DIR', COMMON);
 defined('SMARTYSYSPLUGINS') or define('SMARTYSYSPLUGINS', SMARTY_DIR.'sysplugins'.SEPARATOR);
@@ -25,6 +26,7 @@ $path .= (string) (PATH_SEPARATOR.BASE_PATH.CONFIG);
 $path .= (string) (PATH_SEPARATOR.BASE_PATH.MODEL);
 $path .= (string) (PATH_SEPARATOR.BASE_PATH.DRIVER);
 $path .= (string) (PATH_SEPARATOR.BASE_PATH.API);
+$path .= (string) (PATH_SEPARATOR.BASE_PATH.APP);
 $path .= (string) (PATH_SEPARATOR.BASE_PATH.ADMIN);
 $path .= (string) (PATH_SEPARATOR.BASE_PATH.SMARTYSYSPLUGINS);
 $path .= (string) (PATH_SEPARATOR.BASE_PATH.SMARTY_PLUGINS);
@@ -63,6 +65,7 @@ set_include_path($path);
  $api = 'http://sso.allyes.me/api/getuserstates/12';
  $admin = 'http://sso.allyes.me/admin/addapp/app';
 
+ //js file is conducted by controller js function
  //简单路由指不包含变量的路由，每一条规则对应一个具体文件，
  //参数以 path/file/?arg1=var&arg2=var2 指出。
  $rules = array(

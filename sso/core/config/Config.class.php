@@ -46,7 +46,7 @@ class Config //extends \sso\core\common\Singleton
     public static $smartyCompileDir = 'public/tpl_c';
     public static $smartyConfigDir = 'public/configs';
     public static $smartyCacheDir = 'public/cache';
-    public static $smartyDebugging = false;
+    public static $smartyDebugging = true;
 
 
     //note that memcacheD session will be prefixed with 
