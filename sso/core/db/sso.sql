@@ -24,6 +24,7 @@
      `email` varchar(96) NOT NULL,
      `name` varchar(32) NOT NULL,
      `password` char(32) NOT NULL,
+     `isadmin` ENUM('0', '1') NOT NULL,
      PRIMARY KEY(`id`)
  )ENGINE=MYISAM DEFAULT CHARSET=UTF8;
 
@@ -131,10 +132,12 @@
  -- -----------------------------------------------
  -- default test data 
  -- -----------------------------------------------
- INSERT INTO `user`(`email`, `name`,`password`) 
- VALUES('rereadyou@gmail.com', 'rereadyou', 'rereadyou'),
- ('bo_zhang@allyes.com', 'zhangbo', 'zhangbo');
+ INSERT INTO `user`(`email`, `name`,`password`, `isadmin`) 
+ VALUES('rereadyou@gmail.com', 'rereadyou', 'rereadyou', '1'),
+ ('bo_zhang@allyes.com', 'zhangbo', 'zhangbo', '0');
 
  INSERT INTO `app`(`contactor`, `name`, `domain`, `login_page`, `home_page`) VALUES 
+ (1, 'sso', 'sso.allyes.me', 'authentication/login', 'admin/index'),
  (1, 'agear', 'ssodemo.agear.net', 'login', 'home'),
- (1, 'iuv', 'ssodemo.iuv.me', 'login', 'home');
+ (2, 'iuv', 'ssodemo.iuv.me', 'login', 'home');
+

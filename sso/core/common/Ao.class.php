@@ -13,7 +13,7 @@ use sso\core\common\functions as sf;
 class Ao extends \ArrayObject
 {
     public $oa = NULL;
-    private $attrs = array();
+    public $attrs = array();
     private $funcs = array();
 
     public function __construct($a)

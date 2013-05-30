@@ -1,0 +1,23 @@
+<link rel='stylesheet' type='text/css' href='css/admin.css' /> 
+<div id='apps'>
+    <div id='apps_field' class='tblrow'>
+        {section name=fields loop=$apps->attrs}
+            <div id='' class='tblcol'>
+                {$apps->attrs[fields]}
+            </div>
+        {/section}
+    </div>
+
+    <div id='apps'>
+        {section name=app loop=$apps->oa}
+            <div id='approw' class='tblrow' bgcolor="{cycle values="#eeeeee, #999999"}" >
+                {section name=f loop=$apps->attrs}
+                    {assign var="fn" value=$apps->attrs[f] }
+                    <div id='' class='tblcol' >
+                        {$apps->oa[app]->$fn}
+                    </div>
+                {/section}
+            </div>
+        {/section}
+    </div>
+</div>

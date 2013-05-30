@@ -142,6 +142,19 @@ class Controller
         $js = BASE_PATH.PUB.'js/'.$js;
         echo file_get_contents($js);
     }
+
+    public function css($css)
+    {
+        $css = array_shift($css);
+        $css = BASE_PATH.PUB.'css/'.$css;
+        echo file_get_contents($css);
+    }
+
+    public function jumpto($uri)
+    {
+        header('Location: http://sso.allyes.me/'.$uri);
+        exit;
+    }
 }
 //end of class Controller declaration
 ?>

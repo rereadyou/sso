@@ -54,6 +54,9 @@ class Router extends Singleton
 		$uri = ltrim($this->uri, "/");
 		$uris = explode("/", $uri);
         $pathLen = count($uris);
+        if(substr($uris[$pathLen-1], 0, 1) == '?') //get 参数
+            array_pop($uris);
+        $pathLen = count($uris);
 
         foreach($this->rules as $r => $v)
         {

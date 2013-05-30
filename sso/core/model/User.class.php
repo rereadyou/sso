@@ -11,6 +11,7 @@ class User extends cm\Model
 	protected $email = NULL; 
     protected $name = NULL; 
     protected $password = NULL;
+    public  $isadmin = '0';
 
     /*
     protected $psw = NULL;    //get psw

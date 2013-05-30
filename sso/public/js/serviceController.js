@@ -4,10 +4,10 @@ function SSOController(window, document) {
 
     var ssoSubmitId = 'submitSSOLogin'; //login div id
     var ssoLogoutId = 'submitSSOLogout'; //logout div id
-    var ssoPreloginURL = "http://sso.allyes.me/authentication/prelogin/";
-    var ssoLoginURL = "http://sso.allyes.me/authentication/login/";
-    var ssoLogoutURL = "http://sso.allyes.me/authentication/logout/";
-    var ssoLoginChkURL = "http://sso.allyes.me/authentication/login_chk/";
+    var ssoPreloginURL = "http://sso.allyes.me/authentication/prelogin/";//.php";
+    var ssoLoginURL = "http://sso.allyes.me/authentication/login/";//.php"; //login process page
+    var ssoLogoutURL = "http://sso.allyes.me/authentication/logout/";//.php";
+    var ssoLoginChkURL = "http://sso.allyes.me/authentication/login_chk/";//.php";
 
     this.name = 'ssocontroller';
     this.version = '0.0.1';
@@ -17,7 +17,7 @@ function SSOController(window, document) {
     this.isCheckLoginState = true; //是否先检查已经登录过
     this.loginType = 'rsa';
     this.ssoticketName = 'allyes_ticket';
-    this.service = 'agear';
+    this.service = 'sso';
     this.nonce = null;
     this.isNonceReady = false;
     this.servertime = null;

@@ -62,18 +62,20 @@ set_include_path($path);
  //$prelogin = 'http://sso.allyes.me/prelogin';
  //$logout = 'http://sso.allyes.me/logout';
 
- $api = 'http://sso.allyes.me/api/getuserstates/12';
- $admin = 'http://sso.allyes.me/admin/addapp/app';
+ //$api = 'http://sso.allyes.me/api/getuserstates/12';
+ //$admin = 'http://sso.allyes.me/admin/addapp/app';
 
  //js file is conducted by controller js function
  //简单路由指不包含变量的路由，每一条规则对应一个具体文件，
  //参数以 path/file/?arg1=var&arg2=var2 指出。
  $rules = array(
          //below is simple rule, all file will be in public/ directlly
-        'login' => 'login',
-        'login_chk' => 'login_chk',
-        'logout' => 'logout',
-        'prelogin'  => 'prelogin', 
+        //'login' => 'login',
+        //'login_chk' => 'login_chk',
+        //'logout' => 'logout',
+        //'prelogin'  => 'prelogin', 
+
+        ':authen/:action' => 'authen/action',
 
         //below is concreate rule
         ':index' => 'home/index',

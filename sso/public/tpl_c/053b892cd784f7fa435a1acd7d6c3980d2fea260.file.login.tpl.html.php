@@ -1,25 +1,25 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-05-30 10:39:15
-         compiled from "public/tpl/authentication/login.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:187488626951a5aa928918d8-73219781%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.13, created on 2013-05-30 13:53:00
+         compiled from "public/tpl/admin/login.tpl.html" */ ?>
+<?php /*%%SmartyHeaderCode:147692041151a6e93cc41fd4-92656836%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'c3b33e1af5fbf5341e8f94cffa52f1dd1ce195ad' => 
+    '053b892cd784f7fa435a1acd7d6c3980d2fea260' => 
     array (
-      0 => 'public/tpl/authentication/login.tpl.html',
+      0 => 'public/tpl/admin/login.tpl.html',
       1 => 1369881554,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '187488626951a5aa928918d8-73219781',
+  'nocache_hash' => '147692041151a6e93cc41fd4-92656836',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_51a5aa928ac732_61739764',
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_51a6e93cc5ef45_39887388',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51a5aa928ac732_61739764')) {function content_51a5aa928ac732_61739764($_smarty_tpl) {?><!-- 这里是SSO login区域 -->
+<?php if ($_valid && !is_callable('content_51a6e93cc5ef45_39887388')) {function content_51a6e93cc5ef45_39887388($_smarty_tpl) {?><!-- 这里是SSO login区域 -->
 <div id="loginFlush"></div>
 <div id="sslLoginDiv">
 	<input type="text" name="email" id="email" />
