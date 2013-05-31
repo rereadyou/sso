@@ -1,0 +1,22 @@
+<link rel='stylesheet' type='text/css' href='css/admin.css' /> 
+<div class='aolist'>
+    <div class='fields tblhead'>
+        {section name=field loop=$ao->attrs}
+            <div class='tblcol'>
+                {$ao->attrs[field]}
+            </div>
+        {/section}
+    </div>
+    <div class='records'>
+        {section name=o loop=$ao->oa}
+            <div class='tblrow'>
+            {section name=attr loop=$ao->attrs}
+                {assign var="fn" value=$ao->attrs[attr] }
+                <div class='tblcol' >
+                    {$ao->oa[o]->$fn}
+                </div>
+            {/section}
+            </div>
+        {/section}
+    </div>
+</div>

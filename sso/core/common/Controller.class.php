@@ -63,7 +63,7 @@ class Controller
         $fullpath = get_class($this);
         $class = array_pop(explode('\\', $fullpath));
         $tpldir = strtolower($class);
-        $tpl = $tpldir.'/'.$tpl.'.tpl.html';
+        echo $tpl = $tpldir.'/'.$tpl.'.tpl.html';
         return $tpl;
     }
 

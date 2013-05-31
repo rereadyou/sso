@@ -70,14 +70,30 @@ class Admin extends cm\Controller
         $no = $apps->size(); 
         $attrs = $apps->attrs;
 
-        $this->set('apps', $apps)
-             ->set('appno', $no)
-             ->set('attrs', $attrs)
-             ->flush();
-
-        
-        
+        $this->set('ao', $apps)
+             ->flush('listao')
+             ->fetch_flush('admin/listactiveuser')
+             ->fetch_flush('admin/listuser');
     }
+
+    public function listuser()
+    {
+        $users = md\User::find_all();
+
+        //echo '<pre>';
+        //print_r($users->attrs);
+        //echo '</pre>';
+        $this->set('ao', $users)
+             ->flush('listao');
+    }
+
+    public function listactiveuser()
+    {
+        $sessions = md\Login_Session::find_all();
+        $this->set('ao', $sessions)
+             ->flush('listao');
+    }
+
     
 
 }

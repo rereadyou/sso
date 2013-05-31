@@ -7,10 +7,10 @@ use sso\core\common\functions as sf;
 
 class User extends cm\Model
 {
-	protected $id = NULL;     
-	protected $email = NULL; 
-    protected $name = NULL; 
-    protected $password = NULL;
+	public $id = NULL;     
+	public $email = NULL; 
+    public $name = NULL; 
+    public $password = NULL;
     public  $isadmin = '0';
 
     /*

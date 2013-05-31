@@ -2,10 +2,18 @@
         
 }
 
-.tblrow {
-    list-style: inline;
+.tblhead {
+    background-color: #cecece;
+
+}
+
+.tblrow, .tblhead {
+    font-size: 13px;
 }
 
 .tblcol {
+    width: 150px;
+    margin: 0px 10px;
+    display: inline-block;
 
 }
