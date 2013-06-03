@@ -236,10 +236,13 @@ use sso\core\config as sc;
 		unset($_SESSION[sc\Config::$ssoticketName]);
 		if(isset($_COOKIE[sc\Config::$ssoticketName]))
 			setcookie(sc\Config::$ssoticketName, '', time()-42000, '/');
+		if(isset($_COOKIE[sc\Config::$cookSessName]))
+			setcookie(sc\Config::$cookSessName, '', time()-42000, '/');
 		/* 3 */
+        session_unset();
 		session_destroy();
 	}
-	
+
 	/**
 	 * get_url_host
 	 *

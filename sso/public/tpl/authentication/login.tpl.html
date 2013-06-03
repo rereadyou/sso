@@ -1,9 +1,14 @@
-<div id='authen_login'>
-    email: <input id='authen_email' type="text" />
-    password: <input id='authen_psw' type="password" />
-    <input type="button" id="btnLoginSubmit" value="submit" />
+<!-- 这里是SSO login区域 -->
+<div id="loginFlush"></div>
+<div id="sslLoginDiv">
+    <input type="text" name="email" id="email" value="{$email}"/>
+	<input type="password" name="upsw" id="upsw" />
+	<input type="button" value="submit" id='submitSSOLogin'/>
+	<input type="button" value="logout" id='submitSSOLogout'/>
 </div>
 
-<script type='text/javascript' src = 'js/jquery-1.9.1.js'> </script>
-<script type='text/javascript' src = 'js/functions.js'> </script>
-<script type='text/javascript' src = 'js/authentication.js'> </script>
+<script type="text/javascript" src='js/jsbn.js'></script>
+<script type="text/javascript" src='js/prng4.js'></script> 
+<script type="text/javascript" src='js/rng.js'></script>
+<script type="text/javascript" src='js/rsa.js'></script>
+<script type='text/javascript' src = 'js/serviceController.js'> </script>

@@ -81,6 +81,7 @@ set_include_path($path);
         ':index' => 'home/index',
         'api/getuserstates/:id' => 'api/getuserstates/id',
         'admin/:action/:id' => 'admin/action/id',
+        ':controller/:action/:id' => 'controller/action/id',
 
         //below is general rule
         //':controller/' => 'controller/index', //directory, conflict with .htaccess rewrite rule

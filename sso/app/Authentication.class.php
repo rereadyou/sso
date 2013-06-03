@@ -18,6 +18,11 @@ class Authentication extends cm\Controller
         $this->sso->enable_memcached();
     }
 
+    public function index()
+    {
+        $this->jumpto('authentication/userlogin');
+    }
+
     public function prelogin($type='json')
     {
         if($nonce = $this->sso->publish_nonce())
@@ -213,9 +218,70 @@ class Authentication extends cm\Controller
         {
             return true;
         } 
+        $dbsess = md\Login_Session::find_by_sessid($sid);
+        if(count($dbsess->oa))
+            return true;
+
         return false;
     }
 
+    public function registe()
+    {
+        if($_POST)
+        {
+            extract($_POST, EXTR_PREFIX_ALL, 'reg');
+            $filter = new cm\Filter();
+            $filter->email($reg_email)
+                   ->password($reg_password);
+
+            if(!$filter->res)
+            {
+                $this->out($filter->err); 
+                $this->set('email', $reg_email)
+                     ->flush();
+            }
+            else
+            {
+                $user = md\User::find_by_email($reg_email);
+                if(count($user->oa) != 0)
+                {
+                    $this->out('Email has been used!')
+                         ->set('email', $reg_email)
+                         ->flush();
+                }
+                else if($reg_password !== $reg_repassword)
+                {
+                    $this->out('Passwords don\'t match.')
+                         ->set('email', $reg_email)
+                         ->flush();
+                }
+                else
+                {
+                    $user = new md\User();
+                    $user->email($reg_email)
+                         ->password($reg_password)
+                         ->name('')
+                         ->save();
+
+                    if($user->id)
+                    {
+                        $this->jumpto('authentication/userlogin')
+                             ->out('Registe done! Now please login.')
+                             ->set('email', $reg_email);
+                    }
+                }
+            }
+        }
+        else
+        {
+            $this->flush();
+        }
+    }
+
+    public function userlogin()
+    {
+        $this->flush('login');
+    }
 }
 //end of authentication class declaration
 ?>

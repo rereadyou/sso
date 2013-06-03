@@ -21,7 +21,7 @@
  CREATE TABLE IF NOT EXISTS `user`
  (
      `id` bigint(10) NOT NULL AUTO_INCREMENT,
-     `email` varchar(96) NOT NULL,
+     `email` varchar(96) NOT NULL UNIQUE,
      `name` varchar(32) NOT NULL,
      `password` char(32) NOT NULL,
      `isadmin` ENUM('0', '1') NOT NULL,

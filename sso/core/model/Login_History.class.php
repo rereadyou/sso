@@ -22,6 +22,7 @@ class Login_History extends cm\Model
 
 	public function __construct()
 	{
+        parent::__construct();
         $this->ip = sf\get_client_ip();
         $this->browser = sf\get_client_browser();
         $this->logtime = time();

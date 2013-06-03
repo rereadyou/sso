@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-05-31 14:31:59
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-03 19:49:23
          compiled from "public/tpl/admin/listao.tpl.html" */ ?>
 <?php /*%%SmartyHeaderCode:29760150851a843ccb96fa8-49815398%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f7c2ae34e135c435ddafc5eee68cf305042a14b2' => 
     array (
       0 => 'public/tpl/admin/listao.tpl.html',
-      1 => 1369981918,
+      1 => 1370260098,
       2 => 'file',
     ),
   ),
@@ -19,12 +19,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_51a843ccbccbc0_00151735',
   'variables' => 
   array (
+    'aoflush' => 0,
+    'aono' => 0,
     'ao' => 0,
     'fn' => 0,
+    'val' => 0,
+    'aoclass' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_51a843ccbccbc0_00151735')) {function content_51a843ccbccbc0_00151735($_smarty_tpl) {?><link rel='stylesheet' type='text/css' href='css/admin.css' /> 
+<?php if ($_valid && !is_callable('content_51a843ccbccbc0_00151735')) {function content_51a843ccbccbc0_00151735($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_truncate')) include 'core/common/plugins/modifier.truncate.php';
+?><link rel='stylesheet' type='text/css' href='css/admin.css' /> 
+<div class='aoflush'><?php echo $_smarty_tpl->tpl_vars['aoflush']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['aono']->value;?>
+</div>
 <div class='aolist'>
     <div class='fields tblhead'>
         <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['field'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['field']);
@@ -56,6 +64,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['field']['last']       = ($_s
 
             </div>
         <?php endfor; endif; ?>
+            <div class='tblcol'>
+                actions
+            </div>
     </div>
     <div class='records'>
         <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['o'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['o']);
@@ -108,11 +119,19 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['attr']['first']      = ($_sm
 $_smarty_tpl->tpl_vars['smarty']->value['section']['attr']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['attr']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['attr']['total']);
 ?>
                 <?php $_smarty_tpl->tpl_vars["fn"] = new Smarty_variable($_smarty_tpl->tpl_vars['ao']->value->attrs[$_smarty_tpl->getVariable('smarty')->value['section']['attr']['index']], null, 0);?>
-                <div class='tblcol' >
-                    <?php echo $_smarty_tpl->tpl_vars['ao']->value->oa[$_smarty_tpl->getVariable('smarty')->value['section']['o']['index']]->{$_smarty_tpl->tpl_vars['fn']->value};?>
+                <?php $_smarty_tpl->tpl_vars["val"] = new Smarty_variable($_smarty_tpl->tpl_vars['ao']->value->oa[$_smarty_tpl->getVariable('smarty')->value['section']['o']['index']]->{$_smarty_tpl->tpl_vars['fn']->value}, null, 0);?>
+                <div class='tblcol' title='<?php echo $_smarty_tpl->tpl_vars['val']->value;?>
+'>
+                    <?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['val']->value,20,'...');?>
 
                 </div>
             <?php endfor; endif; ?>
+                <div class='tblcol'>
+                    <input type="button" class="<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
+" value="delete" name="deluser" />
+                    <input type="button" class="<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
+" value="update" name="update" />
+                </div>
             </div>
         <?php endfor; endif; ?>
     </div>

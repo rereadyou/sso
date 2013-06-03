@@ -1,4 +1,5 @@
 <link rel='stylesheet' type='text/css' href='css/admin.css' /> 
+<div class='aoflush'>{$aoflush} {$aono}</div>
 <div class='aolist'>
     <div class='fields tblhead'>
         {section name=field loop=$ao->attrs}
@@ -6,16 +7,24 @@
                 {$ao->attrs[field]}
             </div>
         {/section}
+            <div class='tblcol'>
+                actions
+            </div>
     </div>
     <div class='records'>
         {section name=o loop=$ao->oa}
             <div class='tblrow'>
             {section name=attr loop=$ao->attrs}
                 {assign var="fn" value=$ao->attrs[attr] }
-                <div class='tblcol' >
-                    {$ao->oa[o]->$fn}
+                {assign var="val" value=$ao->oa[o]->$fn}
+                <div class='tblcol' title='{$val}'>
+                    {$val|truncate:20:'...'}
                 </div>
             {/section}
+                <div class='tblcol'>
+                    <input type="button" class="{$aoclass}" value="delete" name="deluser" />
+                    <input type="button" class="{$aoclass}" value="update" name="update" />
+                </div>
             </div>
         {/section}
     </div>

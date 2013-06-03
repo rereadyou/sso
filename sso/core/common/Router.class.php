@@ -187,10 +187,6 @@ class Router extends Singleton
 		$this->parseURI();
 	}
 	
-	public function __destruct()
-	{
-		//self::$instance = '';
-	}
 }
 
 ?>
