@@ -100,17 +100,19 @@ function functions(win, dom, $) {
         return true;
     };
 
-    this.ajax_cb = function(obj, act, url, cb, data={}, method='GET') {
-        //wrapper for jquery ajax
+    this.ajax_cb = function(obj, act, url, cb) {
         $.ajax({
-            type: method,
+            type: "GET",
             url: url,
             async: true,
-            data: data,
             success: function(ret) { 
                 cb(obj, act, ret); 
             },
         });
+    };
+
+    this.ajax_post_cb = function(0 {
+
     };
 
     this.pop_confirm = function(id, hint, cb, wh=300, ht=100) {
@@ -199,23 +201,7 @@ function functions(win, dom, $) {
             }
     };
 
-    this.auto_dim_flush = function(msg, dim=1500, type='info') {
-        var bgc = '';
-        switch(type) {
-            case 'info':
-                bgc = '#458B00';
-                break;
-            case 'error':
-                bgc = '#ff0000';
-                break;
-            case 'warn':
-                bgc = '#C04848';
-                break;
-            default:
-                bgc = '#458B00';
-                break;
-        }
-
+    this.auto_dim_flush = function(msg, dim=1500) {
         var body = document.body;
         var h = body.clientHeight;
         var w = body.clientWidth;
@@ -226,7 +212,7 @@ function functions(win, dom, $) {
             flush.id = id;
             flush.innerHTML = msg;
             flush.style.color = '#ffffff';
-            flush.style.backgroundColor = bgc;
+            flush.style.backgroundColor = '#C04848';
             flush.style.position = 'absolute';
             flush.style.margin = '0 auto';
             flush.style.padding = '3px 10px';
@@ -242,40 +228,7 @@ function functions(win, dom, $) {
             setTimeout('var dim = document.getElementById("_function_auto_dim_flush_"); dim.parentNode.removeChild(dim); ', dim);
     };
 
-    /**
-     * blink_flush
-     *
-     * Show tips in blink mode
-     *
-     * @param   msg   message showing.
-     * @param   loops   Times of blink.
-     * @param   interval    Last time of each blink.
-     */
-    this.blink_flush = function(msg, loops=3, interval=700) {
-        var i = 0;
-        var lp = function() {
-            me.auto_dim_flush(msg, interval, 'warn');
-            if(++i >= loops) {
-                clearInterval(bfid);
-            }
-        };
-        var bfid = setInterval(lp, 1000);
-    };
 
-    this.pop = function(ctn) {
-        var body = document.body;
-        var h = body.clientHeight;
-        var w = body.clientWidth;
-
-        var ctner = document.createElement('div');
-            ctner.id = '_function_popup_';
-            ctner.style.zIndex = '997';
-            ctner.style.margin = '0 auto';
-            ctner.style.cssFloat = 'center';
-            
-        me.append_node(body, ctner);
-        me.cover_body('_function_pop_', true);
-    };
 
 
 }//end of functions

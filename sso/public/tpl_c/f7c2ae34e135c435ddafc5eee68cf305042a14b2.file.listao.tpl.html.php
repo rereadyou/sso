@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-03 19:49:23
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-05 14:17:02
          compiled from "public/tpl/admin/listao.tpl.html" */ ?>
 <?php /*%%SmartyHeaderCode:29760150851a843ccb96fa8-49815398%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f7c2ae34e135c435ddafc5eee68cf305042a14b2' => 
     array (
       0 => 'public/tpl/admin/listao.tpl.html',
-      1 => 1370260098,
+      1 => 1370412881,
       2 => 'file',
     ),
   ),
@@ -24,6 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ao' => 0,
     'fn' => 0,
     'val' => 0,
+    'showaction' => 0,
     'aoclass' => 0,
   ),
   'has_nocache_code' => false,
@@ -65,7 +66,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['field']['last']       = ($_s
             </div>
         <?php endfor; endif; ?>
             <div class='tblcol'>
-                actions
+                <?php if (count($_smarty_tpl->tpl_vars['ao']->value->attrs)>0){?>
+                    actions
+                <?php }?>
             </div>
     </div>
     <div class='records'>
@@ -126,12 +129,16 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['attr']['last']       = ($_sm
 
                 </div>
             <?php endfor; endif; ?>
+            <?php if ($_smarty_tpl->tpl_vars['showaction']->value==true){?>
                 <div class='tblcol'>
                     <input type="button" class="<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
-" value="delete" name="deluser" />
+" value="delete" name="del<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
+" />
                     <input type="button" class="<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
-" value="update" name="update" />
+" value="update" name="up<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
+" />
                 </div>
+            <?php }?>
             </div>
         <?php endfor; endif; ?>
     </div>

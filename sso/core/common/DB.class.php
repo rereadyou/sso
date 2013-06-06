@@ -107,13 +107,13 @@ class DB //extends Singleton
         $fs = count($fields);
         for($i = 0; $i < $fs; $i++)
         {
-            $this->and_where[] = $fields[$i]."='".$vals[$i]."'"; 
+            $this->and_where[] = $fields[$i]."='".$vals[$i]."'";
         }
         
-        $this->sql = "DELETE FROM $this->table WHERE ".
+        $this->sql = "DELETE FROM $this->table WHERE ";
         $this->sql .= implode(' AND ', $this->and_where); 
 
-        $this->query($this->sql);
+        $this->del($this->sql);
     }
 
     protected function select()

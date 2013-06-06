@@ -42,6 +42,7 @@ class Mysqli extends cm\DB
 
     public function query($sql)
     {
+        echo $sql;
         if($result = $this->link->query($sql))
         {
             return $result->fetch_array();
@@ -110,7 +111,7 @@ class Mysqli extends cm\DB
         return false;
     }
 
-    public function delete($sql)
+    public function del($sql)
     {
         return $this->link->query($sql); 
     }
@@ -121,10 +122,5 @@ class Mysqli extends cm\DB
         return $this->link->insert_id;
     }
 }
-
-
-
-
-
-
+//end of mysqli declaration
 ?>

@@ -36,7 +36,7 @@
  (
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `contactor` bigint(10) NOT NULL,
-    `name` varchar(100) NOT NULL,
+    `name` varchar(100) NOT NULL UNIQUE,
     `domain` varchar(200) NOT NULL,
     `ip` varchar(32) NULL,
     `login_page` varchar(32) NOT NULL,

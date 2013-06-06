@@ -8,7 +8,9 @@
             </div>
         {/section}
             <div class='tblcol'>
-                actions
+                {if count($ao->attrs) gt 0}
+                    actions
+                {/if}
             </div>
     </div>
     <div class='records'>
@@ -21,10 +23,12 @@
                     {$val|truncate:20:'...'}
                 </div>
             {/section}
+            {if $showaction eq true}
                 <div class='tblcol'>
-                    <input type="button" class="{$aoclass}" value="delete" name="deluser" />
-                    <input type="button" class="{$aoclass}" value="update" name="update" />
+                    <input type="button" class="{$aoclass}" value="delete" name="del{$aoclass}" />
+                    <input type="button" class="{$aoclass}" value="update" name="up{$aoclass}" />
                 </div>
+            {/if}
             </div>
         {/section}
     </div>

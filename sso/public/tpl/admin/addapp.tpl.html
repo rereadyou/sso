@@ -1,1 +1,15 @@
-hello, {$uname}
+<div id='addmodel'>
+    {section name=field loop=$attrs}
+        <span>
+            {$attrs[field]}
+        </span> <br />
+        <input id="{$attrs[field]}" class='modeldata' type="text" name="{$attrs[field]}" value="" /> <br />
+    {/section}
+
+    <div class='tblcol'>
+        <input type="button" class="{$aoclass}" value="add new" name="add{$addclass}" />
+        <input type="button" class="{$aoclass}" value="clear" name="clear" />
+    </div>
+
+    
+</div>

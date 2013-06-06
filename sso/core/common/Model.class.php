@@ -132,7 +132,6 @@ class Model
 
     public function save()
     {
-
         $class = get_called_class();
         $table = array_pop(explode('\\', $class));
         $attrs = array_keys(get_class_vars($class));
@@ -163,8 +162,8 @@ class Model
         $class = get_called_class();
         $table = array_pop(explode('\\', $class));
 
-        return self::$db->delete($table, $this->id);
-        
+        $kv = array('id' => $this->id);
+        return self::$db->delete($table, $kv);
     }
 
 } //end of class Module declaration

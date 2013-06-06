@@ -30,7 +30,8 @@ class Admin extends cm\Controller
 
     public function index()
     {
-        $this->fetch_flush('admin/head')
+//        $this->fetch_flush('admin/head')
+        $this->fetch_flush('admin/listapp')
              ->fetch_flush('admin/listactiveuser')
              ->fetch_flush('admin/listuser')
              ->fetch_flush('admin/listuserhistory')
@@ -66,17 +67,17 @@ class Admin extends cm\Controller
         //$this->fetch_flush('authentication/login');
     }
 
-    public function addapp()
+    public function listapp($id='')
     {
-        $app = new md\App;
+        if(empty($id))
+        {
+            $apps = md\App::find_all();
+        }
+        else if($id)
+        {
+            $apps = md\App::find_by_id($id);
+        }
 
-        $this->set('uname', 'rereadyou');
-        return $this->flush(); 
-    }
-
-    public function listapp()
-    {
-        $apps = md\App::find_all();
         $no = $apps->size(); 
         $attrs = $apps->attrs;
 
@@ -84,6 +85,7 @@ class Admin extends cm\Controller
              ->set('aoflush', 'Current APPs:')
              ->set('aono', $no)
              ->set('aoclass', 'app')
+             ->set('showaction', true)
              ->flush('listao');
     }
 
@@ -97,6 +99,7 @@ class Admin extends cm\Controller
         $this->set('ao', $users)
              ->set('aono', count($users->oa))
              ->set('aoflush', 'Registed users:')
+             ->set('showaction', true)
              ->set('aoclass', 'user')
              ->flush('listao');
     }
@@ -120,29 +123,153 @@ class Admin extends cm\Controller
              ->set('aoflush', 'User login history:')
              ->set('aono', count($history->oa))
              ->set('aoclass', 'history')
+             ->set('showaction', false)
              ->flush('listao');
     }
 
     public function listinfo()
-    { $infos = md\Login_Info::find_all();
+    { 
+        $infos = md\Login_Info::find_all();
 
         $this->set('ao', $infos)
              ->set('aoflush', 'Current logined user info:')
              ->set('aono', count($infos->oa))
              ->set('aoclass', 'info')
+             ->set('showaction', false)
              ->flush('listao');
+    }
+
+    public function delapp($id)
+    {
+        if(count($id) != 1)
+            return false;
+
+        $id = array_pop($id);
+        $apps = md\App::find($id);
+        if(count($apps) == 1)
+        {
+            $app = $apps->oa[0];
+            $app->delete();
+            echo 'done!';
+            return true;
+        }
+        else
+        {
+            $this->out('No such APP!');
+            return false;
+        }
     }
 
     public function deluser($id)
     {
-        if(empty($id))
+        if(count($id) != 1)
             return false;
 
-        print_r(md\User::find_all()));
+        $id = array_pop($id);
         $users = md\User::find($id);
-        print_r($users);
-        //$user = $users->oa[0];
-        //$user->delete();
+        if(count($users) == 1)
+        {
+            $user = $users->oa[0];
+            $user->delete();
+            echo 'done!';
+            return true;
+        }
+        else
+        {
+            $this->out('No such user!');
+            return false;
+        }
+    }
+
+    public function delinfo($id)
+    {
+        if(count($id) != 1)
+            return false;
+
+        $id = array_pop($id);
+        $info = md\Login_Info::find($id);
+        if(count($info) == 1)
+        {
+            $info = $info[0];
+            $info->delete();
+            echo 'done!';
+            return true;
+        }
+        else
+        {
+            $this->out('No such info!');
+            return false;
+        }
+    }
+
+    public function delhistory($id)
+    {
+        if(count($id) != 1)
+            return false;
+
+        $id = array_pop($id);
+        $history = md\Login_History::find($id);
+        if(count($history) == 1)
+        {
+            $history = $history->oa[0];
+            $history->delete();
+            echo 'done!';
+            return true;
+        }
+        else
+        {
+            $this->out('No such history!');
+            return false;
+        }
+    }
+
+    public function addapp()
+    {
+        $app = new md\App;
+        $kvs = get_object_vars($app);
+        array_shift($kvs); // kill id
+        $attrs = array_keys($kvs);
+
+        if($_POST)
+        {
+            foreach($_POST as $k=>$v)
+            {
+                if(in_array($k, $attrs))
+                {
+                    $app->$k = $v;
+                }
+            }
+            $app->save();
+            if($app->id)
+            {
+                echo 'done!';
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            $this->set('attrs', $attrs)
+                 ->set('addclass', 'app')
+                 ->fetch_flush('admin/head')
+                 ->flush()
+                 ->fetch_flush('admin/footer');
+        }
+    }
+
+    public function adduser()
+    {
+        $user = new md\User(); 
+        
+        $attrs = get_object_vars($user);
+
+        $this->set('attrs', $attrs)
+             ->flush();
+    }
+
+    public function upapp($id)
+    {
+        $this->listapp($id);
     }
 
 }
