@@ -1,5 +1,6 @@
 <?php
 
+defined('SITE') or define('SITE', 'http://sso.allyes.me/');
 defined('SEPARATOR') or define('SEPARATOR', '/');
 defined('BASE_PATH') or define('BASE_PATH', (string)(__DIR__.SEPARATOR));
 

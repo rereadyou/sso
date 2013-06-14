@@ -230,6 +230,7 @@ class Admin extends cm\Controller
         array_shift($kvs); // kill id
         $attrs = array_keys($kvs);
 
+        $err = '';
         if($_POST)
         {
             foreach($_POST as $k=>$v)
@@ -243,18 +244,15 @@ class Admin extends cm\Controller
             if($app->id)
             {
                 echo 'done!';
-                return true;
             }
-            return false;
+            $err = 'Add new app failed!';
         }
-        else
-        {
             $this->set('attrs', $attrs)
                  ->set('addclass', 'app')
+                 ->set('err', $err)
                  ->fetch_flush('admin/head')
                  ->flush()
                  ->fetch_flush('admin/footer');
-        }
     }
 
     public function adduser()
@@ -267,11 +265,73 @@ class Admin extends cm\Controller
              ->flush();
     }
 
-    public function upapp($id)
+    public function upapp($args)
     {
-        $this->listapp($id);
+        if(count($args) !== 1)
+            $err = 'Only app id required!';
+        $id = array_shift($args);
+        $app = md\App::find($id);
+
+        if($app->size != 0)
+            $err = 'No such app!';
+        else
+        {
+            $app = $app[0];
+            $attrs = get_object_vars($app);
+            if(isset($_POST['app']))
+            {
+                foreach($_POST['app'] as $k=>$v)
+                {
+                    if($k !== 'id')
+                        $app->$k($v);
+                }
+                $app->save();
+                if($app->id)
+                {
+                    $this->set('hint', 'Update done!');
+                }
+            }
+        }
+        $this->set('attrs', $attrs)
+             ->set('err', $err)
+             ->set('modelclass', 'app')
+             ->flush('up');
     }
 
-}
-//end of Controller Admin class declaration
+    public function upuser($args)
+    {
+        if(count($args) !== 1)
+            $err = 'Only user id required!';
+        $id = array_shift($args);
+        $user = md\User::find($id);
+
+        if($user->size != 0)
+            $err = 'No such User!';
+        else
+        {
+            $user = $user[0];
+            $attrs = get_object_vars($user);
+            if(isset($_POST['user']))
+            {
+                foreach($_POST['user'] as $k=>$v)
+                {
+                    if($k !== 'id')
+                        $user->$k($v);
+                }
+                $user->save();
+                if($user->id)
+                {
+                    $this->set('hint', 'Update done!');
+                    $this->out('done!');
+                    return $this;
+                }
+            }
+        }
+        $this->set('attrs', $attrs)
+             ->set('err', $err)
+             ->set('modelclass', 'user')
+             ->flush('up');
+    }
+
+} //end of Controller Admin class declaration
 ?>

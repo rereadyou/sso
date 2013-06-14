@@ -1,0 +1,20 @@
+<div class='up'>
+    {$err}{$hint}
+    {foreach key=k item=i name=attr from=$attrs}
+    <div class='tblrow' 
+        {if $k eq 'id'} 
+            {assign var='objid' value="$i"}
+            style="display: none;" 
+        {/if} >
+        {$k}
+        <br />
+        <input id="{$modelclass}_{$objid}_{$k}" class="{$modelclass}_{$objid} {$modelclass}_{$k}" type="text" name="{$modelclass}[{$k}]" value="{$i}" />
+        <br />
+    </div>
+    {/foreach}
+
+    <div class='tblcol'>
+        <input type="submit" model="{$modelclass}_{$objid}" id="btnsubmit" class="btn{$modelclass}" value="update" name="up{$modelclass}" />
+        <input type="button" id="btncancel" class="btncancel" value="cancel" name="cancel" />
+    </div>
+</div>

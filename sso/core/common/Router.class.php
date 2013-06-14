@@ -152,13 +152,18 @@ class Router extends Singleton
         else
         {
             $mod = ucfirst(array_shift($maas));
-            $mod = "sso\core\common\\".$mod;
-            $obj = new $mod();
+            $controller = "sso\core\common\\".$mod;
+            $obj = new $controller();
             $action = array_shift($maas);
 
             if($obj && in_array($action, get_class_methods($obj)))
             {
-                $obj->$action($maas);
+                //set before and after interceptors
+                if($obj->before_action($mod, $action, $maas))
+                {
+                    $obj->$action($maas);
+                    $obj->after_action();
+                }
             }
             else
             {

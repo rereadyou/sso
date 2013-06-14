@@ -79,6 +79,10 @@ class Controller
      */
     protected function set($var, $val)
     {
+        if(func_num_args() == 1)
+        {
+            //assign var with same name
+        }
         $this->tpl->assign($var, $val);
         return $this;
     }
@@ -154,6 +158,24 @@ class Controller
     {
         header('Location: http://sso.allyes.me/'.$uri);
         exit;
+    }
+
+    public function before_action($controller='', $action='', $args='')
+    {
+        $selfurl = SITE.$controller.'/'.$action;
+        if($args = implode('/', $args))
+        {
+            $selfurl .= '/'.$args;
+        }
+        $selfurl = strtolower($selfurl);
+
+        $this->set('selfurl', $selfurl); 
+        return true;
+    }
+
+    public function after_action()
+    {
+
     }
 }
 //end of class Controller declaration

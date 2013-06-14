@@ -1,4 +1,6 @@
 <div id='addmodel'>
+    {$err}
+    <form method='post' action=''>
     {section name=field loop=$attrs}
         <span>
             {$attrs[field]}
@@ -7,9 +9,8 @@
     {/section}
 
     <div class='tblcol'>
-        <input type="button" class="{$aoclass}" value="add new" name="add{$addclass}" />
+        <input type="submit" class="{$aoclass}" value="add new" name="add{$addclass}" />
         <input type="button" class="{$aoclass}" value="clear" name="clear" />
     </div>
-
-    
+    </form>
 </div>

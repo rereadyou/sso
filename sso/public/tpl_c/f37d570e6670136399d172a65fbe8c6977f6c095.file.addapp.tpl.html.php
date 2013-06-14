@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-05 15:31:30
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-09 10:01:59
          compiled from "public/tpl/admin/addapp.tpl.html" */ ?>
 <?php /*%%SmartyHeaderCode:176599866251a5a839043c45-43124443%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f37d570e6670136399d172a65fbe8c6977f6c095' => 
     array (
       0 => 'public/tpl/admin/addapp.tpl.html',
-      1 => 1370417383,
+      1 => 1370743316,
       2 => 'file',
     ),
   ),
@@ -19,6 +19,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_51a5a839065233_52244886',
   'variables' => 
   array (
+    'err' => 0,
     'attrs' => 0,
     'aoclass' => 0,
     'addclass' => 0,
@@ -26,6 +27,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_51a5a839065233_52244886')) {function content_51a5a839065233_52244886($_smarty_tpl) {?><div id='addmodel'>
+    <?php echo $_smarty_tpl->tpl_vars['err']->value;?>
+
+    <form method='post' action=''>
     <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['field'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['field']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['field']['name'] = 'field';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['field']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['attrs']->value) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
@@ -60,13 +64,12 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['field']['last']       = ($_s
     <?php endfor; endif; ?>
 
     <div class='tblcol'>
-        <input type="button" class="<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
+        <input type="submit" class="<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
 " value="add new" name="add<?php echo $_smarty_tpl->tpl_vars['addclass']->value;?>
 " />
         <input type="button" class="<?php echo $_smarty_tpl->tpl_vars['aoclass']->value;?>
 " value="clear" name="clear" />
     </div>
-
-    
+    </form>
 </div>
 <?php }} ?>

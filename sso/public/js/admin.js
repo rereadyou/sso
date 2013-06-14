@@ -3,6 +3,7 @@ function admin(win, doc, $) {
 
     var f = new functions(win, doc, $);
     var me = this;
+    
 
     var adminurl = 'http://sso.allyes.me/admin/';
 
@@ -15,6 +16,9 @@ function admin(win, doc, $) {
     this.historyclass = 'history';
     this.activeuserclass = 'activeuser';
 
+    this.coverId = '';
+    this.popId = '';
+
     this.init = function() {
        $('input:button').click(function() { 
            var obj = this;
@@ -24,10 +28,12 @@ function admin(win, doc, $) {
            var data = {};
            var method = 'GET';
 
+           //delete action
            if(/^del/.test(act)) {
                var id = $(obj).parent().siblings().first().attr('title');
                url += id;
            }
+           //add action
            if(/^add/.test(act)) {
                $('.modeldata').each(function() {
                    //here this stands for dom rather than jquery object
@@ -35,10 +41,12 @@ function admin(win, doc, $) {
                });
                method = 'POST';
            }
+           //update action
            if(/^up/.test(act)) {
                var id = $(obj).parent().siblings().first().attr('title');
                url += id;
                f.ajax_cb(obj, act, url, me.cb_up_open);
+               return ;
            }
 
            var tip = 'Are you sure to do ' + act + '?';
@@ -66,7 +74,50 @@ function admin(win, doc, $) {
     };
 
     this.cb_up_open = function(dom, act, ret) {
-        f.pop(ret);
+        var obj = this;
+        var coverId = 'popup_body_cover';
+        me.coverId = coverId;
+        var popId = 'pop';
+        me.popId = popId;
+
+        f.cover_body(coverId, true);
+        f.pop(popId, ret);
+
+        var btnsub = document.getElementById('btnsubmit');
+        var btnfin = document.getElementById('btncancel');
+        var model = btnsub.getAttribute('model');
+
+        f.addEventListener(btnsub, 'click', function() {
+            var url = adminurl;
+                url += 'up' + model.replace(/_/, '/');
+                console.info(url);
+            var data = {};
+            $('.'+model).each(function() {
+                //var idx = this.id.indexOf('_');
+                //var cls = this.id.substring(0, idx);
+                //var attr = this.id.substr(model.length + 1);
+
+                data[this.name] = this.value;
+            });
+
+            f.ajax_cb(obj, act, url, me.cb_up_done, data, 'post'); 
+        });
+
+        f.addEventListener(btnfin, 'click', function() {
+            f.cover_body(coverId, false);
+            console.info(popId);
+            f.remove_node(popId);
+        });
+
+    };
+
+    this.cb_up_done = function(dom, act, ret) {
+        if(ret === 'done!') {
+            f.cover_body(me.coverId, false);
+            f.remove_node(me.popId);
+            f.auto_dim_flush('Update done!');
+        }
+
     };
 }
 
